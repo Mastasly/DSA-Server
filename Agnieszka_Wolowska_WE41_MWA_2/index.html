@@ -1,0 +1,120 @@
+<!--
+Author: Agnieszka Wolowska
+Assignment: WE4 Mobile Web Applications, Digital Skills Academy
+Date : 2016/09/12
+Ref: 
+
+https://tests4geeks.com/tutorials/single-page-application-using-angularjs-tutorial/
+http://www.w3schools.com/
+https://github.com/
+-->
+
+<!doctype html>
+<html ng-app="myApp"><!--The ng-app directive tells AngularJS that this is the root element of the AngularJS application and can be only one or the first appearance will be used anyway-->
+  <head>
+  <link rel="stylesheet" href="css/angular.css" />
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script>
+  </head>
+
+  <div ng-hide="myCheck"></div><!--Hide a section when a checkbox is checked-->
+  <header class="w3-container w3-indigo w3-padding-16">
+
+  <div class="form-right-col">
+       
+    </div>
+
+    <h3><i class="fa fa-list-alt"></i> My Shopping List </h3> <!--font awesome icons-->
+    <img src="img/shopping-list.jpg" class="img-responsive" alt="ListPic">
+
+   
+  <body ng-controller="HomeController">
+
+    <h1>{{message}}</h1>
+
+    <script src="app.js"></script>
+
+
+
+  
+  
+    <script type="text/ng-template" id="pages/home.html">
+      <h1>Home</h1>
+      <h3>{{message}}</h3>
+    </script>
+    <script type="text/ng-template" id="pages/blog.html">
+      <h1>Blog</h1>
+      <h3>{{message}}</h3>
+    </script>
+    <script type="text/ng-template" id="pages/about.html">
+      <h1>About</h1>
+      <h3>{{message}}</h3>
+    </script>
+
+    <a href="#/">Home</a>
+    <a href="#/blog">Blog</a>
+    <a href="#/about">About</a>
+
+    <div ng-view></div><!--container to put the content provided by the routing.This container is the ng-view directive.-->
+    <form><!--Forms in AngularJS provides data-binding and validation of input controls-->
+  Select a list topic:<!--Below binding select boxes to your application with the ng-model directive.The property defined in the ng-model attribute will have the value of the selected option in the selectbox.-->
+  <select ng-model="myVar"><!--Input controls provides data-binding by using the ng-model directive ,application property "myVar".The ng-model directive binds the input controller to the rest of application-->
+    <option value="">
+    <option value="breakfast">Breakfast
+    <option value="lunch">Lunch
+    <option value="dinner">Dinner
+     <option value="supper">Supper
+  </select>
+</form>
+<div ng-switch="myVar"><!--switch directive-->
+  <div ng-switch-when="breakfast">
+     <h1>Breakfast</h1>
+     <p>Lets make a breakfast list:</p>
+  </div>
+  <div ng-switch-when="lunch">
+     <h1>Lunch</h1>
+     <p>Lets make a lunch list:</p>
+  </div>
+  <div ng-switch-when="dinner">
+     <h1>Dinner</h1>
+     <p>Lets make a dinner list:</p>
+  </div>
+  <div ng-switch-when="supper">
+     <h1>Supper</h1>
+     <p>Lets make a supper list:</p>
+  </div>
+</div>
+    
+
+<div  ng-controller="myCtrl">
+  <ul class="w3-ul">
+  <!--ng-repeat directive to display a list using the items in the array-->
+    <li ng-repeat="x in products " class="w3-padding-16 w3-yellow">{{x}}<span ng-click="removeItem($index) " style="cursor:pointer;" class="w3-right w3-margin-right" >×</span></li><!--<span> element for each item give them an ng-click directive which calls the removeItem function with the current $index-->
+
+  </ul>
+  <input ng-model="addMe"><!--adding a text field, and binding it to the application with the ng-model directive.-->
+<button ng-click="addItem()"  class="w3-btn w3-padding w3-deep-orange"><i class="fa fa-plus-square-o"></i> Add</button><!--Adding a button with an ng-click directive that will run the addItem function when the button is clicked.-->
+  <p>{{errortext}}</p>
+</div>
+
+
+
+ <div  ng-init="quantity=1;price=5">
+
+<i class="fa fa-check-square-o"></i> Quantity: <input type="number"  ng-model="quantity"><br>
+<i class="fa fa-money"></i> Costs:    <input type="number" ng-model="price">
+ <p class="w3-padding-left w3-text-yellow" >Total price : {{ quantity * price }} €</p>
+
+</div>
+    <p class="w3-padding-left w3-text-red">{{errortext}}</p></center>
+  
+  </div>
+
+</div>
+    <script src="app.js"></script>
+    </header>
+  </body>
+</html>
